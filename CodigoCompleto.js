@@ -63,7 +63,7 @@ do {
         mostrar("Gasto diário: " + gastoDiario.toFixed(2));
       
       // Para resolver o problema do NaN, foi utilizada 
-      // a função isNaN() para verificar se o valor digitado
+      // a condição isNaN() para verificar se o valor digitado
       // pelo usuário é realmente um número. Quando o usuário
       // digita algo inválido, o programa mostra uma mensagem
       // de erro e pede o valor novamente, garantindo que apenas
