@@ -3,63 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lógica Js</title>
+    <title>DESAFIO_INGLES_NicolasOliveira.pdf</title>
 </head>
 <body>
     
 </body>
+
 <script>
 
-    function mostrar(texto){
+    function mostrarTexto(texto){
         document.write(texto);
+    }
+
+    function quebraLinha(){
         document.write("<br>");
-   }
+    }
 
-   let soma = 0;
-   let menorValor = Infinity;
+    let soma = 0;
+    let menorValor = Infinity;
+    let distancia;
+    let consumoMedio;
+    let quantidadePostos;
+    let preco;
 
-   let distancia =  parseFloat(prompt ("Digite a distancia (Km): "));
-   let consumoMedio = parseFloat(prompt("Digite o consumo (Km/L)"));
+    
+    do {
+        distancia = parseFloat(prompt("Digite a distância (Km):"));
 
-   let consumoLitros = distancia/consumoMedio;
-   mostrar("Consumo necessário: " + consumoLitros.toFixed(2) + " litros");
-
-   let quantidadePostos = parseInt(prompt("Quantos postos pesquisados?"));
-
-
-    for (let i = 1; i <= quantidadePostos; i++){
-        let preco = parseFloat(prompt("Digite o preço do posto " + i + ":"));
-        
-        if(isNaN(preco)){
-            alert("Valor inválido! Digite um número.");
-            i--;
-            continue;
+        if (isNaN(distancia) || distancia <= 0) {
+            alert("Erro! Digite um número válido maior que 0.");
         }
 
-        soma+=preco;
+    } while (isNaN(distancia) || distancia <= 0);
 
-        if (preco < menorValor){
+
+    do {
+        consumoMedio = parseFloat(prompt("Digite o consumo médio (Km/L):"));
+
+        if (isNaN(consumoMedio) || consumoMedio <= 0) {
+            alert("Erro! Digite um número válido para o consumo médio (Km/L).");
+        }
+
+    } while (isNaN(consumoMedio) || consumoMedio <= 0);
+
+   
+    let consumoLitros = distancia / consumoMedio;
+
+    do {
+        quantidadePostos = parseInt(prompt("Quantos postos pesquisados?"));
+
+        if (isNaN(quantidadePostos) || quantidadePostos <= 0) {
+            alert("Erro! Digite um número válido maior que 0 para quantidade de postos");
+        }
+
+    } while (isNaN(quantidadePostos) || quantidadePostos <= 0);
+
+    for (let i = 1; i <= quantidadePostos; i++) {
+
+        do {
+            preco = parseFloat(prompt("Digite o preço do posto " + i + ":"));
+
+            if (isNaN(preco) || preco <= 0) {
+                alert("Erro! Digite um preço válido maior que 0 para o preço do posto" + 1 + ":");
+            }
+
+        } while (isNaN(preco) || preco <= 0);
+
+        soma += preco;
+
+        if (preco < menorValor) {
             menorValor = preco;
-
         }
     }
 
-    let media = soma / quantidadePostos;
-        mostrar("Média dos preços: " + media.toFixed(2));
 
-        mostrar("Menor preço: " + menorValor.toFixed(2));
-        
+    let media = soma / quantidadePostos;
     let gastoDiario = 2 * (consumoLitros * menorValor);
-        mostrar("Gasto diário: " + gastoDiario.toFixed(2));
-      
-      // Para resolver o problema do NaN, foi utilizada 
-      // a função isNaN() para verificar se o valor digitado
-      // pelo usuário é realmente um número. Quando o usuário
-      // digita algo inválido, o programa mostra uma mensagem
-      // de erro e pede o valor novamente, garantindo que apenas
-      // números sejam usados nos cálculos. De acordo com materiais
-      // do W3Schools e discussões no StackOverflow, essa validação
-      // é essencial, pois o parseFloat() pode retornar NaN quando
-      // recebe textos, o que pode causar erros nos resultados.
+
+    
+    mostrarTexto("Consumo necessário: " + consumoLitros.toFixed(2) + " litros");
+    quebraLinha();
+
+    mostrarTexto("Menor preço: " + menorValor.toFixed(2));
+    quebraLinha();
+
+    mostrarTexto("Média dos preços: " + media.toFixed(2));
+    quebraLinha();
+
+    mostrarTexto("Gasto diário: " + gastoDiario.toFixed(2));
+    quebraLinha();
+
+
+    // EXPLICAÇÃO DO NaN
+    // Para evitar o problema do NaN, foi utilizada a função isNaN()
+    // em conjunto com estruturas do...while. Dessa forma, sempre que
+    // o usuário digitar um valor inválido (como texto), o programa
+    // exibirá uma mensagem de erro e solicitará a entrada novamente.
+    // Assim, garante-se que apenas valores numéricos válidos sejam
+    // utilizados nos cálculos, evitando erros nos resultados.
+
 </script>
 </html>
